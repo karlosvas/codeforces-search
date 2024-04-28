@@ -11,41 +11,46 @@
 
 <body>
    <main>
-      <h1>Codeforces problem selector</h1>
-      <div id="int">
+      <div class="problem-sector">
+         <h1>Codeforces problem selector</h1>
          <div id="info">
-            <label for="tags">800 Easy - 3500 Hard</label>
-            <select name="tags" id="tags">
-               <option value="">Select One Tag...</option>
-               <option value="implementation">implementation</option>
-               <option value="math">math</option>
-               <option value="greedy">greedy</option>
-               <option value="strings">strings</option>
-               <option value="brute force">brute force</option>
-               <option value="dp">dp</option>
-               <option value="probabilities">probabilities</option>
-               <option value="data structures">data structures</option>
-            </select>
+            <div>
+               <h4>Difficulty: <span id="rating-num">2150</span></h4>
+               <input type="range" value="range" min="800" max="3500">
+            </div>
+            <div>
+               <h4>Tags</h4>
+               <select name="tags" id="tags">
+                  <option value="">....</option>
+                  <option value="implementation">Implementation</option>
+                  <option value="math">Maths</option>
+                  <option value="greedy">Greedy</option>
+                  <option value="strings">Strings</option>
+                  <option value="brute force">Brute force</option>
+                  <option value="dp">DP</option>
+                  <option value="probabilities">Probabilities</option>
+                  <option value="data structures">Data structures</option>
+               </select>
+            </div>
          </div>
-         <input id="inp-rating" type="text" placeholder="Introduce un rating" value="">
          <div id="div-btn">
             <button id="btn-search">Buscar</button>
             <button id="btn-random">Random</button>
          </div>
+         <div class="card-res">
+            <fieldset>
+               <legend>Resultado</legend>
+               <section id="sect">
+                  <h2 class="problem-title"></h2>
+                  <h3 class="problem-value"></h3>
+                  <h3 class="problem-value"></h3>
+               </section>
+            </fieldset>
+            <a id="go" href="">
+               <button>Go</button>
+            </a>
+         </div>
       </div>
-      <div class="card-res">
-         <fieldset>
-            <legend>Resultado</legend>
-            <section id="sect">
-               <h2 class="problem-title"></h2>
-               <h3 class="problem-value"></h3>
-               <h3 class="problem-value"></h3>
-            </section>
-         </fieldset>
-      </div>
-      <a id="go" href="">
-         <button>Go</button>
-      </a>
    </main>
    <script src="./src/scripts/doc.js"> </script>
 </body>

@@ -6,8 +6,14 @@ function randomNumberBetween(min, max) {
 // Boton de Buscar y sección de resultados
 const searchButton = document.getElementById("btn-search");
 const searchButtonRandom = document.getElementById("btn-random");
+const inputRating = document.querySelector('input[type="range"]');
 const sect = document.getElementById("sect");
 
+let ratingValue = 2150;
+inputRating.addEventListener("input", (event) => {
+   ratingValue = event.target.value;
+   document.getElementById("rating-num").innerHTML = ratingValue;
+});
 
 searchButton.addEventListener("click", (event) => {
    searchProblem();
@@ -45,12 +51,11 @@ function searchProblemRandom() {
 
 function searchProblem() {
    // Seleciona el value de el selecionado
-   let input = document.getElementById("inp-rating");
    let text = tags.options[tags.selectedIndex].value;
-   if (text == "" || input.value == "") return;
+   if (text == "" || ratingValue.value == "") return;
 
    // Petición a problemas de codeforces
-   fetch("https://codeforces.com/api/problemset.problems")
+   fetch(`https://codeforces.com/api/problemset.problems?tags=${text}`)
       .then((response) => response.json())
       .then((data) => {
          // Comprobamos si la petición a salido bien
@@ -59,21 +64,21 @@ function searchProblem() {
          // Obtenemos el Obj de problemas y selecionamos el input
          const problems = data.result.problems;
 
-         // Se filtra por el tag selecionado, devuelbe un conjunto de objetos
-         let tagsProblems = problems.filter((problem) => {
-            return problem.tags.includes(text);
+         // Se filtra por rating en base 10, de los rangos selecionados.
+         let result = problems.filter((element) => {
+            console.log(element?.rating, ratingValue);
+            return element?.rating <= ratingValue;
          });
 
-         // Se filtra por rating en base 10, de los tags selecionados.
-         let result = tagsProblems.filter((problem) => {
-            return problem?.rating == parseInt(input.value, 10);
-         });
+         result.sort((a, b) => b.rating - a.rating);
 
          // Añadimos el contenido en el section, y generamos la URl del problema.
          sect.innerHTML = `
-            <h2 class="problem-title">${result[0].name}</h2>
-            <h3 class="problem-value">Tags: ${result[0].tags}</h3>
-            <h3 class="problem-value">Rating:  ${result[0].rating}</h3>
+            <h3 class="problem-title">${result[0].name}</h2>
+            <p class="problem-value">
+               Tags: ${result[0].tags}</p>
+               Rating:  ${result[0].rating}
+            </p>
          `;
 
          document.getElementById("go").href = `https://codeforces.com/problemset/problem/${result[0]?.contestId}/${result[0]?.index}`;

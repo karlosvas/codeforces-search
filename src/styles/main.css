@@ -18,114 +18,101 @@ body {
    height: 100vh;
    margin: 0;
    padding: 0;
-   background-color: #242423;
+   background-color: #1a1a16;
    display: flex;
    align-items: center;
    justify-content: center;
-   flex-direction: column;
-   color: white;
-
-   & button {
-      background-color: white;
-      color: black;
-      border: none;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border-radius: 1rem;
-      border: 1px solid black;
-      position: relative;
-      padding: 5px;
-      cursor: pointer;
-      transition: all 0.2s;
-      width: 7rem;
-      margin-bottom: 30px;
-   }
-
-   & button:hover {
-      background-color: black;
-      color: white;
-      border: 1px solid white;
-   }
+   color: rgb(228, 228, 228);
 
    & main {
-      width: 30rem;
-      height: 40rem;
-      border: 2px solid white;
-      border-radius: 5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      box-shadow: 0 0 0.2rem white;
+      width: 100%;
+      height: 80%;
 
-      & #int {
+      & .problem-sector {
+         margin: auto;
          display: flex;
          align-items: center;
          justify-content: center;
          flex-direction: column;
+         width: 70%;
 
-         label {
-            margin-bottom: 20px;
-         }
-
-         & #inp-rating {
-            margin: 20px;
-            background-color: transparent;
+         & button {
+            background-color: rgb(228, 228, 228);
+            color: black;
             border: none;
-            border-bottom: 2px solid whitesmoke;
-            border-radius: 1px;
-            color: white;
-            text-align: center;
+            border-radius: 1rem;
+            position: relative;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 7rem;
+            margin-bottom: 30px;
+            margin: 20px 10px;
          }
 
-         & #inp-rating:focus {
-            outline: none;
+         & button:hover {
+            color: white;
+            background-color: rgb(25, 201, 78);
          }
 
          & #info {
-            & label {
-               margin-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+
+            & div {
+               margin: 20px;
+            }
+         }
+
+         & .card-res {
+            margin: 30px 0;
+            width: 80%;
+            height: 100%;
+            border-radius: 1rem;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+               url(../img/codeforces.png);
+
+            & fieldset {
+               margin: auto;
+               max-width: 90%;
+               min-height: 100%;
+               border-radius: 1rem;
+               position: relative;
+            }
+
+            & section {
+               display: flex;
+               justify-content: center;
+               flex-direction: column;
+               align-items: center;
+               width: 100%;
+               height: 100%;
+            }
+
+            & button {
+               width: 95%;
             }
          }
       }
+   }
+}
 
-      & .card-res {
-         width: 20rem;
-         border-radius: 1rem;
-         height: 50%;
-         margin: -10px;
-         background: url(../img/codeforces.png);
-         background-size: cover;
-         background-position: 15px;
-         background-repeat: no-repeat;
-
-         & fieldset {
-            width: 95%;
-            border-radius: 1rem;
-            height: 95%;
-            backdrop-filter: blur(10px);
-            position: relative;
-         }
-
-         & fieldset::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 103%;
-            background-color: rgba(0, 0, 0, 0.7);
-            top: -8px;
-            left: 0px;
-            z-index: -1;
-            border-radius: 1rem;
-         }
-
-         & section {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            height: 100%;
+@media screen and (min-width: 1000px) {
+   body {
+      & main {
+         & .problem-sector {
+            & .card-res {
+               width: 40%;
+            }
          }
       }
    }
